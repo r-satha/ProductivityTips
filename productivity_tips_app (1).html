@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Productivity Tips</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            animation: backgroundShift 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundShift {
+            0% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+            100% { background: linear-gradient(135deg, #764ba2 0%, #f093fb 50%, #667eea 100%); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        .controls {
+            padding: 20px 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .search-input, .category-select, .sort-select {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1em;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus, .category-select:focus, .sort-select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .category-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-btn.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .tip-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            backdrop-filter: blur(20px);
+            position: relative;
+            transition: all 0.5s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .tip-category {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .tip-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .favorite-btn, .share-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .favorite-btn:hover, .share-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            color: #e74c3c;
+            animation: heartbeat 0.6s ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .tip-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px 0;
+            flex-grow: 1;
+        }
+
+        .tip-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .rating-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #ddd;
+            transition: all 0.2s ease;
+        }
+
+        .star:hover, .star.active {
+            color: #ffd700;
+        }
+
+        .tip-number {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .daily-tip-banner {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .daily-tip-banner::before {
+            content: '✨';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: translateY(-50%) rotate(0deg); }
+            50% { opacity: 0.5; transform: translateY(-50%) rotate(180deg); }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        .share-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            display: none;
+            z-index: 100;
+        }
+
+        .share-menu.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .share-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .share-option:hover {
+            background: #f0f0f0;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 60px 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-filters {
+                justify-content: center;
+            }
+            
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .tip-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">💡 Productivity Hub</h1>
+            <p class="subtitle">Discover, rate, and organize tips to boost your productivity</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label class="control-label">Search Tips</label>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for specific tips...">
+                <div class="category-filters" id="categoryFilters">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="time">Time</button>
+                    <button class="category-btn" data-category="focus">Focus</button>
+                    <button class="category-btn" data-category="organization">Organization</button>
+                    <button class="category-btn" data-category="habits">Habits</button>
+                    <button class="category-btn" data-category="health">Health</button>
+                    <button class="category-btn" data-category="technology">Technology</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Sort By</label>
+                <select class="sort-select" id="sortSelect">
+                    <option value="random">Random</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="favorites">Favorites First</option>
+                    <option value="category">Category</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="daily-tip-banner" id="dailyTipBanner">
+                <strong>Daily Tip Recommendation</strong>
+                <p id="dailyTipText">Click "Get Daily Tip" to see today's special recommendation!</p>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalTips">30</div>
+                    <div class="stat-label">Total Tips</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="viewedTips">0</div>
+                    <div class="stat-label">Viewed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="favoriteCount">0</div>
+                    <div class="stat-label">Favorites</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="avgRating">0.0</div>
+                    <div class="stat-label">Avg Rating</div>
+                </div>
+            </div>
+
+            <div class="tip-container" id="tipContainer">
+                <div class="tip-header">
+                    <span class="tip-category" id="tipCategory">Getting Started</span>
+                    <div class="tip-actions">
+                        <button class="favorite-btn" id="favoriteBtn" onclick="toggleFavorite()">🤍</button>
+                        <div style="position: relative;">
+                            <button class="share-btn" id="shareBtn" onclick="toggleShareMenu()">📤</button>
+                            <div class="share-menu" id="shareMenu">
+                                <a href="#" class="share-option" onclick="shareToTwitter()">🐦 Twitter</a>
+                                <a href="#" class="share-option" onclick="shareToLinkedIn()">💼 LinkedIn</a>
+                                <a href="#" class="share-option" onclick="shareToFacebook()">📘 Facebook</a>
+                                <a href="#" class="share-option" onclick="copyToClipboard()">📋 Copy Link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip-text" id="tipText">
+                    Welcome to your enhanced productivity hub! Use the controls above to search, filter by category, and sort tips. You can favorite tips, rate them, and even share your favorites with others.
+                </div>
+                
+                <div class="tip-footer">
+                    <div class="rating-container">
+                        <span style="margin-right: 10px; color: #666;">Rate this tip:</span>
+                        <div class="stars" id="starRating">
+                            <span class="star" data-rating="1">⭐</span>
+                            <span class="star" data-rating="2">⭐</span>
+                            <span class="star" data-rating="3">⭐</span>
+                            <span class="star" data-rating="4">⭐</span>
+                            <span class="star" data-rating="5">⭐</span>
+                        </div>
+                    </div>
+                    <div class="tip-number" id="tipNumber">0</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="getRandomTip()">Get Random Tip</button>
+                <button class="btn btn-secondary" onclick="getDailyTip()">Get Daily Tip</button>
+                <button class="btn btn-secondary" onclick="showFavorites()">View Favorites</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const productivityTips = [
+            { id: 1, text: "Use the Pomodoro Technique: Work for 25 minutes, then take a 5-minute break.", category: "time", rating: 0, favorite: false },
+            { id: 2, text: "Start your day by tackling the most important task first - eat that frog!", category: "habits", rating: 0, favorite: false },
+            { id: 3, text: "Keep your workspace clean and organized to maintain mental clarity.", category: "organization", rating: 0, favorite: false },
+            { id: 4, text: "Turn off non-essential notifications to minimize distractions.", category: "focus", rating: 0, favorite: false },
+            { id: 5, text: "Practice the 2-minute rule: If it takes less than 2 minutes, do it now.", category: "habits", rating: 0, favorite: false },
+            { id: 6, text: "Plan your day the night before to hit the ground running.", category: "time", rating: 0, favorite: false },
+            { id: 7, text: "Use time-blocking to dedicate specific hours to specific tasks.", category: "time", rating: 0, favorite: false },
+            { id: 8, text: "Take regular breaks to maintain focus and prevent burnout.", category: "health", rating: 0, favorite: false },
+            { id: 9, text: "Batch similar tasks together to maximize efficiency.", category: "organization", rating: 0, favorite: false },
+            { id: 10, text: "Set clear, specific goals rather than vague objectives.", category: "habits", rating: 0, favorite: false },
+            { id: 11, text: "Use the 80/20 rule: Focus on the 20% of tasks that yield 80% of results.", category: "focus", rating: 0, favorite: false },
+            { id: 12, text: "Keep a 'done' list alongside your to-do list to track accomplishments.", category: "organization", rating: 0, favorite: false },
+            { id: 13, text: "Delegate tasks that others can do better or faster than you.", category: "habits", rating: 0, favorite: false },
+            { id: 14, text: "Use keyboard shortcuts to speed up your computer work.", category: "technology", rating: 0, favorite: false },
+            { id: 15, text: "Prepare everything you need the night before important days.", category: "organization", rating: 0, favorite: false },
+            { id: 16, text: "Learn to say 'no' to commitments that don't align with your goals.", category: "focus", rating: 0, favorite: false },
+            { id: 17, text: "Use templates and checklists for recurring tasks.", category: "organization", rating: 0, favorite: false },
+            { id: 18, text: "Take care of your health - good sleep and exercise boost productivity.", category: "health", rating: 0, favorite: false },
+            { id: 19, text: "Minimize decision fatigue by establishing routines for small choices.", category: "habits", rating: 0, favorite: false },
+            { id: 20, text: "Review and reflect on your productivity weekly to identify improvements.", category: "habits", rating: 0, favorite: false },
+            { id: 21, text: "Use the 'Getting Things Done' method to capture and organize all your tasks.", category: "organization", rating: 0, favorite: false },
+            { id: 22, text: "Work during your natural energy peaks when possible.", category: "time", rating: 0, favorite: false },
+            { id: 23, text: "Eliminate multitasking - focus on one task at a time for better results.", category: "focus", rating: 0, favorite: false },
+            { id: 24, text: "Use productivity apps and tools that actually help, not hinder you.", category: "technology", rating: 0, favorite: false },
+            { id: 25, text: "Create a dedicated workspace that signals 'work mode' to your brain.", category: "organization", rating: 0, favorite: false },
+            { id: 26, text: "Practice deep breathing or meditation to improve focus and reduce stress.", category: "health", rating: 0, favorite: false },
+            { id: 27, text: "Use the 'two-day rule' for habits: never miss twice in a row.", category: "habits", rating: 0, favorite: false },
+            { id: 28, text: "Automate repetitive tasks with technology and workflows.", category: "technology", rating: 0, favorite: false },
+            { id: 29, text: "Set boundaries around your time and communicate them clearly.", category: "time", rating: 0, favorite: false },
+            { id: 30, text: "Celebrate small wins to maintain motivation and momentum.", category: "habits", rating: 0, favorite: false }
+        ];
+
+        let currentTip = null;
+        let viewedTips = 0;
+        let currentCategory = 'all';
+        let currentSort = 'random';
+        let searchTerm = '';
+        let showingFavorites = false;
+
+        // Initialize event listeners
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchTerm = e.target.value.toLowerCase();
+            if (searchTerm) {
+                searchTips();
+            }
+        });
+
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            if (currentTip) {
+                getFilteredTip();
+            }
+        });
+
+        // Category filter buttons
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentCategory = e.target.dataset.category;
+                showingFavorites = false;
+                getFilteredTip();
+            });
+        });
+
+        // Star rating system
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', (e) => {
+                const rating = parseInt(e.target.dataset.rating);
+                rateTip(rating);
+            });
+
+            star.addEventListener('mouseenter', (e) => {
+                const rating = parseInt(e.target.dataset.rating);
+                highlightStars(rating);
+            });
+        });
+
+        document.getElementById('starRating').addEventListener('mouseleave', () => {
+            if (currentTip) {
+                highlightStars(currentTip.rating);
+            }
+        });
+
+        function getRandomTip() {
+            showingFavorites = false;
+            const filtered = getFilteredTips();
+            if (filtered.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            let tip;
+            if (currentSort === 'random') {
+                tip = filtered[Math.floor(Math.random() * filtered.length)];
+            } else {
+                tip = filtered[0];
+            }
+
+            displayTip(tip);
+        }
+
+        function getFilteredTips() {
+            let filtered = productivityTips;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(tip => tip.category === currentCategory);
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(tip => 
+                    tip.text.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            if (showingFavorites) {
+                filtered = filtered.filter(tip => tip.favorite);
+            }
+
+            // Sort tips
+            switch (currentSort) {
+                case 'rating':
+                    filtered = filtered.sort((a, b) => b.rating - a.rating);
+                    break;
+                case 'favorites':
+                    filtered = filtered.sort((a, b) => {
+                        if (a.favorite && !b.favorite) return -1;
+                        if (!a.favorite && b.favorite) return 1;
+                        return b.rating - a.rating;
+                    });
+                    break;
+                case 'category':
+                    filtered = filtered.sort((a, b) => a.category.localeCompare(b.category));
+                    break;
+            }
+
+            return filtered;
+        }
+
+        function getFilteredTip() {
+            const filtered = getFilteredTips();
+            if (filtered.length > 0) {
+                displayTip(filtered[0]);
+            } else {
+                showEmptyState();
+            }
+        }
+
+        function displayTip(tip) {
+            currentTip = tip;
+            viewedTips++;
+
+            const tipContainer = document.getElementById('tipContainer');
+            const tipText = document.getElementById('tipText');
+            const tipCategory = document.getElementById('tipCategory');
+            const tipNumber = document.getElementById('tipNumber');
+            const favoriteBtn = document.getElementById('favoriteBtn');
+
+            // Add animation
+            tipContainer.classList.remove('fade-in');
+            setTimeout(() => {
+                tipText.textContent = tip.text;
+                tipCategory.textContent = tip.category.charAt(0).toUpperCase() + tip.category.slice(1);
+                tipNumber.textContent = tip.id;
+                
+                favoriteBtn.textContent = tip.favorite ? '❤️' : '🤍';
+                favoriteBtn.className = tip.favorite ? 'favorite-btn active' : 'favorite-btn';
+                
+                highlightStars(tip.rating);
+                tipContainer.classList.add('fade-in');
+                
+                updateStats();
+            }, 100);
+        }
+
+        function toggleFavorite() {
+            if (!currentTip) return;
+            
+            currentTip.favorite = !currentTip.favorite;
+            const favoriteBtn = document.getElementById('favoriteBtn');
+            
+            favoriteBtn.textContent = currentTip.favorite ? '❤️' : '🤍';
+            favoriteBtn.className = currentTip.favorite ? 'favorite-btn active' : 'favorite-btn';
+            
+            updateStats();
+        }
+
+        function rateTip(rating) {
+            if (!currentTip) return;
+            
+            currentTip.rating = rating;
+            highlightStars(rating);
+            updateStats();
+        }
+
+        function highlightStars(rating) {
+            document.querySelectorAll('.star').forEach((star, index) => {
+                star.className = index < rating ? 'star active' : 'star';
+            });
+        }
+
+        function getDailyTip() {
+            const today = new Date().toDateString();
+            const dailyIndex = Math.abs(today.split('').reduce((a, b) => {
+                a = ((a << 5) - a) + b.charCodeAt(0);
+                return a & a;
+            }, 0)) % productivityTips.length;
+            
+            const dailyTip = productivityTips[dailyIndex];
+            displayTip(dailyTip);
+            
+            const banner = document.getElementById('dailyTipBanner');
+            const bannerText = document.getElementById('dailyTipText');
+            bannerText.textContent = `Today's special tip: "${dailyTip.text.substring(0, 50)}..."`;
+        }
+
+        function showFavorites() {
+            showingFavorites = true;
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-category="all"]').classList.add('active');
+            currentCategory = 'all';
+            
+            const favorites = productivityTips.filter(tip => tip.favorite);
+            if (favorites.length > 0) {
+                displayTip(favorites[0]);
+            } else {
+                showEmptyState('No favorite tips yet! Heart some tips to see them here.');
+            }
+        }
+
+        function searchTips() {
+            const filtered = getFilteredTips();
+            if (filtered.length > 0) {
+                displayTip(filtered[0]);
+            } else {
+                showEmptyState('No tips found matching your search.');
+            }
+        }
+
+        function showEmptyState(message = 'No tips found for the selected filters.') {
+            document.getElementById('tipText').textContent = message;
+            document.getElementById('tipCategory').textContent = 'No Results';
+            document.getElementById('tipNumber').textContent = '?';
+            document.getElementById('favoriteBtn').textContent = '🤍';
+            highlightStars(0);
+        }
+
+        function toggleShareMenu() {
+            const shareMenu = document.getElementById('shareMenu');
+            shareMenu.classList.toggle('active');
+            
+            // Close menu when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.share-btn') && !e.target.closest('.share-menu')) {
+                        shareMenu.classList.remove('active');
+                    }
+                });
+            }, 100);
+        }
+
+        function shareToTwitter() {
+            if (!currentTip) return;
+            const text = encodeURIComponent(`💡 Productivity Tip: ${currentTip.text} #ProductivityTips`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+            document.getElementById('shareMenu').classList.remove('active');
+        }
+
+        function shareToLinkedIn() {
+            if (!currentTip) return;
+            const text = encodeURIComponent(`Productivity Tip: ${currentTip.text}`);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}&summary=${text}`, '_blank');
+            document.
